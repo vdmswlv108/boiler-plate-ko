@@ -4,12 +4,14 @@ const port = 5000 //5000port back server 로 둠
 const bodyParser = require('body-parser')
 const { User } = require('./models/User')
 
+const config = require('./config/key')
+
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://eunji:76155Rr^^@boilerplate.gd4cj.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -18,7 +20,7 @@ mongoose.connect('mongodb+srv://eunji:76155Rr^^@boilerplate.gd4cj.mongodb.net/te
     .catch((err) => console.log(err))
 
 
-app.get('/', (req, res) => res.send('Hello World!')) // 헬로우 월드 출력되게
+app.get('/', (req, res) => res.send('Hello World! dsfafsdfasd')) // 헬로우 월드 출력되게
 
 //회원 가입을 위한 route
 app.post("/register", (req, res) => {
